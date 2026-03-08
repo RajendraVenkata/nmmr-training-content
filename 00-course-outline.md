@@ -319,7 +319,41 @@ Every module includes a **Docker-based hands-on lab** accessible via the browser
 - Best practices — Deployment naming conventions, region selection, failover strategies
 - **Lab**: Set up Azure OpenAI, deploy GPT-4o, and build a chat app with content filtering
 
-#### B3.10 Quick Comparison & Cheat Sheet
+#### B3.10 Hugging Face — The Open AI Platform
+- What is Hugging Face — The GitHub of machine learning: models, datasets, Spaces, and inference
+- Creating a Hugging Face account — Sign-up walkthrough, profile setup
+- Generating access tokens — Settings → Access Tokens, fine-grained vs read/write tokens
+- Token management — Token scoping (read, write, fine-grained), revocation, organization tokens
+- Understanding usage limits — Free tier (Inference API rate limits), Pro subscription, Enterprise plans
+- Setting up billing — Pro plan features, Inference Endpoints pricing, Spaces GPU billing
+- Installing the SDK — `pip install huggingface_hub transformers`, verifying installation
+- Hugging Face Hub — Browsing models, filtering by task (text-generation, embeddings, image), model cards
+- The Inference API (Serverless) — Free hosted inference for popular models
+- Inference API endpoint — `https://api-inference.huggingface.co/models/{model_id}`, required headers (`Authorization: Bearer`)
+- Request format — `inputs` (text prompt), `parameters` (temperature, max_new_tokens, top_p)
+- Response format — Parsing `generated_text`, handling different task outputs
+- Streaming responses — Using SSE with the Inference API for real-time output
+- Chat Completions compatible endpoint — OpenAI-compatible API for chat models
+- Using OpenAI SDK with Hugging Face — `OpenAI(base_url="https://api-inference.huggingface.co/v1")` for seamless switching
+- `huggingface_hub` Python client — `InferenceClient` for typed, easy API calls
+- Multi-turn conversations — Building chat history with `InferenceClient.chat_completion()`
+- Popular models on Hub — Llama, Mistral, Phi, Gemma, Qwen, Falcon, StarCoder, BLOOM
+- Gated models — Accepting license agreements for restricted models (Llama, Gemma)
+- Downloading models locally — `huggingface-cli download`, `snapshot_download()`, cache management
+- Running models locally with Transformers — `pipeline()`, `AutoModelForCausalLM`, `AutoTokenizer`
+- Text generation pipeline — Loading a model, generating text, configuring generation parameters
+- Embeddings — Using Sentence Transformers and embedding models from the Hub
+- Inference Endpoints (Dedicated) — Deploying models on dedicated GPU infrastructure
+- Creating an Inference Endpoint — Choosing model, instance type (GPU), region, scaling options
+- Spaces — Hosting Gradio/Streamlit demos, GPU-accelerated Spaces
+- Datasets — Browsing and loading datasets with `datasets` library for fine-tuning and evaluation
+- Fine-tuning on Hugging Face — AutoTrain, Trainer API, pushing fine-tuned models to Hub
+- Model evaluation — Using `evaluate` library, Open LLM Leaderboard for benchmarking
+- Error handling — Handling `401` (invalid token), `429` (rate limit), `503` (model loading) responses
+- Best practices — Caching models locally, choosing the right inference method (API vs local vs Endpoint), model size vs quality
+- **Lab**: Generate your Hugging Face token, call the Inference API with 3 different models, download and run a model locally with Transformers, and deploy a Gradio Space
+
+#### B3.11 Quick Comparison & Cheat Sheet
 - Side-by-side comparison table — Pricing per million tokens (input/output) across all providers
 - Context window comparison — 4K to 2M tokens, who supports what
 - Rate limits comparison — RPM and TPM across free and paid tiers
