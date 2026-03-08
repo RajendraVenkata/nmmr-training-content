@@ -93,80 +93,79 @@ Every module includes a **Docker-based hands-on lab** accessible via the browser
 - B1.6 Closed-source vs Open-source models
 - B1.7 **Lab**: Chat with different LLMs via web UI and observe differences
 
+### Module B2: Python for AI — Quick Refresher
+- B2.1 Python basics recap — variables, functions, classes
+- B2.2 Working with APIs — `requests` library
+- B2.3 JSON handling for LLM responses
+- B2.4 Async programming basics — `asyncio`, `aiohttp`
+- B2.5 Virtual environments and dependency management
+- B2.6 **Lab**: Python API exercises calling Ollama
 
-### Module B3: Python for AI — Quick Refresher
-- B3.1 Python basics recap — variables, functions, classes
-- B3.2 Working with APIs — `requests` library
-- B3.3 JSON handling for LLM responses
-- B3.4 Async programming basics — `asyncio`, `aiohttp`
-- B3.5 Virtual environments and dependency management
-- B3.6 **Lab**: Python API exercises calling Ollama
+### Module B3: Prompt Engineering Fundamentals
+- B3.1 What is prompt engineering and why it matters
+- B3.2 System prompts vs User prompts vs Assistant messages
+- B3.3 Zero-shot, few-shot, and chain-of-thought prompting
+- B3.4 Structured output — Getting JSON responses from LLMs
+- B3.5 Prompt templates and variables
+- B3.6 Common pitfalls and how to avoid them
+- B3.7 **Lab**: Prompt engineering exercises with Ollama
 
-### Module B4: Prompt Engineering Fundamentals
-- B4.1 What is prompt engineering and why it matters
-- B4.2 System prompts vs User prompts vs Assistant messages
-- B4.3 Zero-shot, few-shot, and chain-of-thought prompting
-- B4.4 Structured output — Getting JSON responses from LLMs
-- B4.5 Prompt templates and variables
-- B4.6 Common pitfalls and how to avoid them
-- B4.7 **Lab**: Prompt engineering exercises with Ollama
+### Module B4: Introduction to AI Agents
+- B4.1 What is an AI agent — Beyond chatbots
+- B4.2 Agent = LLM + Tools + Memory + Planning
+- B4.3 The ReAct pattern — Reason → Act → Observe → Repeat
+- B4.4 Types of agents — Conversational, task-oriented, autonomous
+- B4.5 Agent vs Chain vs Simple LLM call — When to use what
+- B4.6 Real-world agent examples and use cases
+- B4.7 **Lab**: Trace through an agent's reasoning loop manually
 
-### Module B5: Introduction to AI Agents
-- B5.1 What is an AI agent — Beyond chatbots
-- B5.2 Agent = LLM + Tools + Memory + Planning
-- B5.3 The ReAct pattern — Reason → Act → Observe → Repeat
-- B5.4 Types of agents — Conversational, task-oriented, autonomous
-- B5.5 Agent vs Chain vs Simple LLM call — When to use what
-- B5.6 Real-world agent examples and use cases
-- B5.7 **Lab**: Trace through an agent's reasoning loop manually
+### Module B5: Tool Calling — Giving Agents Abilities
+- B5.1 What is tool/function calling
+- B5.2 How tool calling works — The LLM decides, your code executes
+- B5.3 Defining tools with JSON schemas
+- B5.4 Tool calling with Ollama (Llama 3.1 native support)
+- B5.5 Building your first tool — A calculator agent
+- B5.6 Multiple tools — Search + calculator + file reader
+- B5.7 Handling tool errors gracefully
+- B5.8 **Lab**: Build a multi-tool agent from scratch with Ollama
 
-### Module B6: Tool Calling — Giving Agents Abilities
-- B6.1 What is tool/function calling
-- B6.2 How tool calling works — The LLM decides, your code executes
-- B6.3 Defining tools with JSON schemas
-- B6.4 Tool calling with Ollama (Llama 3.1 native support)
-- B6.5 Building your first tool — A calculator agent
-- B6.6 Multiple tools — Search + calculator + file reader
-- B6.7 Handling tool errors gracefully
-- B6.8 **Lab**: Build a multi-tool agent from scratch with Ollama
+### Module B6: Building Your First Agent with LangChain
+- B6.1 What is LangChain — The orchestration layer
+- B6.2 LangChain core concepts — Models, prompts, chains, tools, agents
+- B6.3 Setting up LangChain with Ollama
+- B6.4 Creating tools with `@tool` decorator
+- B6.5 Building a ReAct agent with `create_tool_calling_agent`
+- B6.6 AgentExecutor — Running agents with verbose tracing
+- B6.7 Adding conversation memory to agents
+- B6.8 **Lab**: Build a research assistant agent using LangChain + Ollama
 
-### Module B7: Building Your First Agent with LangChain
-- B7.1 What is LangChain — The orchestration layer
-- B7.2 LangChain core concepts — Models, prompts, chains, tools, agents
-- B7.3 Setting up LangChain with Ollama
-- B7.4 Creating tools with `@tool` decorator
-- B7.5 Building a ReAct agent with `create_tool_calling_agent`
-- B7.6 AgentExecutor — Running agents with verbose tracing
-- B7.7 Adding conversation memory to agents
-- B7.8 **Lab**: Build a research assistant agent using LangChain + Ollama
+### Module B7: Introduction to RAG (Retrieval Augmented Generation)
+- B7.1 The problem — LLMs don't know your private data
+- B7.2 What is RAG — Retrieve → Augment → Generate
+- B7.3 Text splitting and chunking strategies
+- B7.4 Embeddings — Converting text to vectors
+- B7.5 Vector databases — ChromaDB (local, free)
+- B7.6 Building a simple RAG pipeline
+- B7.7 RAG with LangChain — Document loaders, retrievers, chains
+- B7.8 **Lab**: Build a "Chat with your PDF" application
 
-### Module B8: Introduction to RAG (Retrieval Augmented Generation)
-- B8.1 The problem — LLMs don't know your private data
-- B8.2 What is RAG — Retrieve → Augment → Generate
-- B8.3 Text splitting and chunking strategies
-- B8.4 Embeddings — Converting text to vectors
-- B8.5 Vector databases — ChromaDB (local, free)
-- B8.6 Building a simple RAG pipeline
-- B8.7 RAG with LangChain — Document loaders, retrievers, chains
-- B8.8 **Lab**: Build a "Chat with your PDF" application
+### Module B8: Provider Abstraction — Write Once, Run Anywhere
+- B8.1 Why provider abstraction matters
+- B8.2 Using the OpenAI SDK with Ollama (compatible API)
+- B8.3 Swapping Ollama → OpenAI → Anthropic Claude with one-line changes
+- B8.4 LangChain's provider abstraction layer
+- B8.5 Environment-based configuration (dev=Ollama, prod=Claude)
+- B8.6 Cost tracking and token usage monitoring
+- B8.7 **Lab**: Build an agent that runs on Ollama locally, then swap to Claude API
 
-### Module B9: Provider Abstraction — Write Once, Run Anywhere
-- B9.1 Why provider abstraction matters
-- B9.2 Using the OpenAI SDK with Ollama (compatible API)
-- B9.3 Swapping Ollama → OpenAI → Anthropic Claude with one-line changes
-- B9.4 LangChain's provider abstraction layer
-- B9.5 Environment-based configuration (dev=Ollama, prod=Claude)
-- B9.6 Cost tracking and token usage monitoring
-- B9.7 **Lab**: Build an agent that runs on Ollama locally, then swap to Claude API
-
-### Module B10: Beginner Capstone Project
-- B10.1 Project: **AI-Powered FAQ Assistant**
+### Module B9: Beginner Capstone Project
+- B9.1 Project: **AI-Powered FAQ Assistant**
   - Loads company documents (PDF/text)
   - Uses RAG to answer questions accurately
   - Has tool calling for live data (weather, calculator, date/time)
   - Runs on Ollama locally
   - One-line swap to Claude/OpenAI for deployment
-- B10.2 **Lab**: Full capstone project build in Docker environment
+- B9.2 **Lab**: Full capstone project build in Docker environment
 
 ---
 
