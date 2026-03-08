@@ -105,59 +105,196 @@ Every module includes a **Docker-based hands-on lab** accessible via the browser
 > *A hands-on reference guide — one lesson per provider. Come back anytime you need a refresher on setting up or calling a specific LLM API.*
 
 #### B3.1 Anthropic Claude
-- Creating an Anthropic account and generating API keys
-- API key management — Workspaces, key rotation, usage limits
-- The Messages API — Endpoint, headers, request/response format
-- Calling Claude with Python (`anthropic` SDK)
-- Models overview — Claude Opus, Sonnet, Haiku — when to use which
-- **Lab**: Generate your Anthropic API key and make your first Claude API call
+- Creating an Anthropic account — Sign-up walkthrough, email verification
+- Navigating the Anthropic Console — Dashboard overview, usage graphs
+- Generating API keys — Creating keys, naming conventions, key scoping
+- API key management — Workspaces, key rotation, revoking compromised keys
+- Understanding usage limits — Free tier, rate limits (RPM/TPM), billing tiers
+- Setting up billing — Adding payment method, setting spend limits, usage alerts
+- Installing the SDK — `pip install anthropic`, verifying installation
+- The Messages API — Endpoint (`https://api.anthropic.com/v1/messages`), required headers (`x-api-key`, `anthropic-version`)
+- Request format — `model`, `messages[]`, `max_tokens`, `system`, `temperature`
+- Response format — Parsing `content[]`, `stop_reason`, `usage` (input/output tokens)
+- Streaming responses — Using `stream=True` for real-time token output
+- Multi-turn conversations — Building message history with `role: user` / `role: assistant`
+- Vision capabilities — Sending images to Claude via base64 or URL
+- Models overview — Claude Opus 4 (flagship reasoning), Sonnet 4 (balanced), Haiku 3.5 (fast & cheap)
+- Model selection guide — When to use Opus vs Sonnet vs Haiku (cost, speed, quality trade-offs)
+- Error handling — Handling `400`, `401`, `429` (rate limit), `529` (overloaded) responses
+- Best practices — Secure key storage, retry logic with exponential backoff
+- **Lab**: Generate your Anthropic API key and build a multi-turn chat script with Claude
 
 #### B3.2 OpenAI (GPT)
-- Creating an OpenAI account and generating API keys
-- API key management — Organization settings, billing, rate limits
-- The Chat Completions API — Endpoint, headers, request/response format
-- Calling GPT with Python (`openai` SDK)
-- Models overview — GPT-4o, GPT-4o-mini, o1, o3 — when to use which
-- **Lab**: Generate your OpenAI API key and make your first GPT API call
+- Creating an OpenAI account — Sign-up walkthrough, phone verification
+- Navigating the OpenAI Platform — Dashboard, playground, usage tracking
+- Generating API keys — Project keys vs user keys, naming and scoping
+- API key management — Organization settings, team roles, key permissions
+- Understanding usage limits — Free credits, tier system (Tier 1–5), rate limits per model
+- Setting up billing — Adding payment method, hard/soft usage caps, auto-recharge
+- Installing the SDK — `pip install openai`, verifying installation
+- The Chat Completions API — Endpoint (`https://api.openai.com/v1/chat/completions`), required headers (`Authorization: Bearer`)
+- Request format — `model`, `messages[]` (system/user/assistant roles), `temperature`, `max_tokens`, `response_format`
+- Response format — Parsing `choices[]`, `message.content`, `finish_reason`, `usage` tokens
+- Streaming responses — Using `stream=True`, handling `delta` chunks
+- Multi-turn conversations — Managing conversation history, token counting with `tiktoken`
+- Vision capabilities — Using GPT-4o with image inputs (`image_url` in content)
+- JSON mode — Forcing structured JSON output with `response_format: { type: "json_object" }`
+- Models overview — GPT-4o (flagship multimodal), GPT-4o-mini (cheap & fast), o1 (reasoning), o3 (advanced reasoning)
+- Model selection guide — When to use GPT-4o vs mini vs o-series (cost, latency, reasoning depth)
+- Function calling — Defining tools with JSON schema, handling `tool_calls` in response
+- Error handling — Handling `401`, `429` (rate limit with `Retry-After`), `500`, `503` responses
+- Best practices — Token optimization, context window management, API key rotation
+- **Lab**: Generate your OpenAI API key and build a multi-turn chat with function calling
 
 #### B3.3 Google Gemini
-- Creating a Google AI Studio account and generating API keys
-- API key management — Google Cloud projects, quotas, billing
-- The Generative Language API — Endpoint, headers, request/response format
-- Calling Gemini with Python (`google-generativeai` SDK)
-- Models overview — Gemini 2.0 Flash, Gemini 2.0 Pro — when to use which
-- **Lab**: Generate your Google AI API key and make your first Gemini API call
+- Creating a Google AI Studio account — Sign-up with Google account, enabling the API
+- Navigating Google AI Studio — Playground, prompt gallery, model tuning
+- Generating API keys — Creating keys in AI Studio vs Google Cloud Console
+- API key management — Google Cloud projects, IAM permissions, key restrictions (IP/referrer)
+- Understanding usage limits — Free tier (generous RPM), pay-as-you-go pricing, quotas
+- Setting up billing — Linking Google Cloud billing account, setting budgets and alerts
+- Installing the SDK — `pip install google-generativeai`, verifying installation
+- The Generative Language API — Endpoint, authentication methods (API key vs OAuth)
+- Request format — `model`, `contents[]` (parts with text/image), `generationConfig`, `safetySettings`
+- Response format — Parsing `candidates[]`, `content.parts[]`, `finishReason`, `usageMetadata`
+- Streaming responses — Using `stream=True` with `generate_content()`, handling chunks
+- Multi-turn conversations — Using `chat = model.start_chat()`, maintaining history
+- Vision & multimodal — Sending images, audio, video, and PDFs to Gemini
+- System instructions — Setting model behavior with `system_instruction` parameter
+- Models overview — Gemini 2.5 Pro (flagship reasoning), Gemini 2.0 Flash (fast & multimodal), Gemini 2.0 Flash Lite (ultra-cheap)
+- Model selection guide — When to use Pro vs Flash vs Lite (cost, speed, capability trade-offs)
+- Grounding with Google Search — Enabling real-time web grounding in responses
+- Safety settings — Configuring harm category thresholds (harassment, hate speech, etc.)
+- Error handling — Handling `400`, `403` (quota exceeded), `429`, blocked content responses
+- Best practices — Managing long contexts (1M+ tokens), multimodal prompt design
+- **Lab**: Generate your Google AI API key and build a multimodal chat with image understanding
 
 #### B3.4 Meta Llama (via Ollama)
-- Why Llama is different — Open-weight models, no API key needed
-- Running Llama locally with Ollama — `ollama pull llama3.1:8b`
-- Ollama REST API — The OpenAI-compatible local endpoint
-- Calling Llama with Python via Ollama's API
-- Models overview — Llama 3.1 (8B, 70B, 405B), Llama 3.2 — size vs capability
-- **Lab**: Pull and interact with Llama models locally via Ollama
+- Why Llama is different — Open-weight models, no API key needed, run locally for free
+- Llama licensing — Meta's community license, commercial use terms
+- Installing Ollama — Linux/Mac/Windows installation walkthrough
+- Pulling your first model — `ollama pull llama3.1:8b`, understanding download size
+- Understanding model sizes — 1B, 3B, 8B, 70B, 405B — VRAM requirements and trade-offs
+- Quantization explained — Q4, Q5, Q8, FP16 — quality vs memory trade-offs
+- Ollama CLI commands — `run`, `pull`, `list`, `ps`, `rm`, `show`, `cp`
+- Chatting via CLI — `ollama run llama3.1:8b`, system prompts with `>>> /set system`
+- Ollama REST API — `http://localhost:11434` endpoints overview
+- Generate endpoint — `POST /api/generate` — request/response format
+- Chat endpoint — `POST /api/chat` — multi-turn conversation format
+- OpenAI-compatible endpoint — `POST /v1/chat/completions` — drop-in replacement
+- Calling Llama with Python — Using `requests` library and the `openai` SDK with `base_url`
+- Streaming responses — Handling NDJSON stream from Ollama
+- Model customization — Creating Modelfiles with custom system prompts and parameters
+- Running multiple models — Switching between Llama, Mistral, Phi, Gemma on Ollama
+- Models overview — Llama 3.1 (8B, 70B, 405B), Llama 3.2 (1B, 3B lightweight), Llama 3.2 Vision (11B, 90B)
+- Model selection guide — Choosing by hardware: CPU-only (1B/3B), 8GB VRAM (8B-Q4), 24GB+ VRAM (70B-Q4)
+- GPU vs CPU inference — Performance expectations, memory offloading
+- Best practices — Model preloading, context size tuning (`num_ctx`), keep-alive settings
+- **Lab**: Install Ollama, pull multiple models, chat via CLI, API, and Python script
 
 #### B3.5 Mistral AI
-- Creating a Mistral account and generating API keys
-- API key management — La Plateforme dashboard, billing, rate limits
-- The Chat Completions API — Endpoint, headers, request/response format
-- Calling Mistral with Python (`mistralai` SDK)
-- Models overview — Mistral Large, Mistral Small, Codestral — when to use which
-- **Lab**: Generate your Mistral API key and make your first Mistral API call
+- Creating a Mistral account — Sign-up on La Plateforme, email verification
+- Navigating La Plateforme — Dashboard, playground (Le Chat), usage analytics
+- Generating API keys — Creating keys, naming conventions
+- API key management — Key listing, deletion, workspace scoping
+- Understanding usage limits — Free tier (experimental endpoints), rate limits, billing tiers
+- Setting up billing — Adding payment method, cost estimator, usage alerts
+- Installing the SDK — `pip install mistralai`, verifying installation
+- The Chat Completions API — Endpoint (`https://api.mistral.ai/v1/chat/completions`), required headers
+- Request format — `model`, `messages[]`, `temperature`, `max_tokens`, `response_format`
+- Response format — Parsing `choices[]`, `message.content`, `finish_reason`, `usage`
+- Streaming responses — Using `stream=True`, handling SSE chunks
+- Multi-turn conversations — Building message history with roles
+- JSON mode — Forcing structured JSON output
+- Function calling — Defining tools, handling `tool_calls`, parallel tool execution
+- Models overview — Mistral Large (flagship), Mistral Small (efficient), Codestral (code-specialized), Mistral Embed (embeddings)
+- Model selection guide — When to use Large vs Small vs Codestral (reasoning, cost, code tasks)
+- Code generation — Using Codestral for fill-in-the-middle and code completion
+- Embeddings — Using Mistral Embed for vector search applications
+- Error handling — Handling `401`, `429`, `422` (validation) responses
+- Best practices — Guardrailing with `safe_prompt`, retry strategies
+- **Lab**: Generate your Mistral API key and build a chat with function calling and code generation
 
 #### B3.6 Cohere
-- Creating a Cohere account and generating API keys
-- API key management — Dashboard, trial vs production keys
-- The Chat API — Endpoint, headers, request/response format
-- Calling Cohere with Python (`cohere` SDK)
-- Models overview — Command R+, Command R, Embed — when to use which
-- **Lab**: Generate your Cohere API key and make your first Cohere API call
+- Creating a Cohere account — Sign-up walkthrough, trial key vs production key
+- Navigating the Cohere Dashboard — Playground, API keys, usage monitoring
+- Generating API keys — Trial keys (free, rate-limited) vs production keys
+- API key management — Key rotation, team access, environment separation
+- Understanding usage limits — Trial tier (generous free usage), production pricing, rate limits
+- Setting up billing — Upgrading from trial, adding payment, cost tracking
+- Installing the SDK — `pip install cohere`, verifying installation
+- The Chat API — Endpoint (`https://api.cohere.com/v2/chat`), required headers
+- Request format — `model`, `messages[]`, `temperature`, `max_tokens`, `connectors`, `tools`
+- Response format — Parsing `message.content[]`, `finish_reason`, `usage`
+- Streaming responses — Using `stream=True`, handling event types
+- Multi-turn conversations — Managing chat history with `preamble` and message roles
+- RAG with connectors — Built-in web search connector, custom connectors
+- Grounded generation — Citations and source attribution in responses
+- Models overview — Command R+ (flagship RAG/tool use), Command R (efficient), Embed v3 (multilingual embeddings), Rerank v3 (search re-ranking)
+- Model selection guide — When to use Command R+ vs R vs Embed vs Rerank
+- Embeddings — Generating embeddings with `input_type` (search_document, search_query, classification, clustering)
+- Reranking — Using Rerank to improve search relevance
+- Tool use — Defining tools, multi-step tool execution with citations
+- Error handling — Handling `401`, `429`, `498` (token expired) responses
+- Best practices — Leveraging Cohere's RAG strengths, embedding model selection for use case
+- **Lab**: Generate your Cohere API key and build a grounded RAG chat with citations
 
-#### B3.7 Quick Comparison & Cheat Sheet
-- Side-by-side comparison — Pricing, rate limits, context windows, strengths
-- Common request/response patterns across all providers
-- Environment variable best practices — Storing API keys safely (`.env`, secrets managers)
-- Choosing the right provider for your use case (cost, speed, quality, privacy)
-- **Lab**: Build a unified Python script that calls all providers with the same prompt and compares responses
+#### B3.7 Amazon Bedrock
+- What is Amazon Bedrock — Managed access to multiple LLMs through a single API
+- AWS account setup — Creating an account, IAM user setup, access keys
+- Enabling models — Requesting model access in the Bedrock console (Claude, Llama, Mistral, Titan)
+- Authentication — AWS access keys, IAM roles, `boto3` credential chain
+- Installing the SDK — `pip install boto3`, configuring AWS CLI (`aws configure`)
+- The InvokeModel API — Endpoint, regions, request signing
+- Request format — Provider-specific body format (varies by model), `modelId`, `contentType`
+- Response format — Parsing model-specific response bodies
+- Converse API — Unified request/response format across all Bedrock models
+- Streaming responses — Using `InvokeModelWithResponseStream` and `ConverseStream`
+- Multi-turn conversations — Using Converse API's message history
+- Models available — Claude (Anthropic), Llama (Meta), Mistral, Amazon Titan, Cohere Command
+- Model selection guide — Choosing models based on task, cost, and region availability
+- Guardrails — Creating Bedrock Guardrails for content filtering and PII redaction
+- Knowledge Bases — Managed RAG with S3 data sources and vector stores
+- Cost management — On-demand vs provisioned throughput, AWS Cost Explorer
+- Error handling — Handling `ThrottlingException`, `AccessDeniedException`, `ModelNotReadyException`
+- Best practices — Region selection for latency, cross-region inference, IAM least-privilege
+- **Lab**: Set up AWS Bedrock, enable Claude, and build a multi-model chat using the Converse API
+
+#### B3.8 Azure OpenAI Service
+- What is Azure OpenAI — Microsoft-hosted OpenAI models with enterprise features
+- Azure account setup — Creating an Azure account, subscription, resource group
+- Requesting access — Applying for Azure OpenAI access, approval process
+- Creating a resource — Azure OpenAI resource, selecting region, pricing tier
+- Deploying models — Creating model deployments (GPT-4o, GPT-4o-mini, o1) in Azure AI Studio
+- Authentication — API keys vs Azure Active Directory (Entra ID) tokens
+- Installing the SDK — `pip install openai`, configuring for Azure endpoint
+- The Azure Chat Completions API — Endpoint format (`https://{resource}.openai.azure.com/...`), `api-version` parameter
+- Request format — Same as OpenAI but with `azure_endpoint`, `api_version`, `azure_deployment`
+- Response format — Identical to OpenAI, parsing `choices[]`, `usage`
+- Streaming responses — Using `stream=True`, same chunking as OpenAI
+- Content filtering — Azure's built-in content safety filters, severity levels, custom filters
+- Using the `openai` SDK with Azure — `AzureOpenAI` client class, environment variables
+- Models available — GPT-4o, GPT-4o-mini, o1, o3, DALL-E 3, Whisper, text-embedding
+- Model deployment guide — Choosing deployment type (Standard, Global, Provisioned)
+- Azure AI Studio — Playground, prompt flow, model benchmarking
+- Enterprise features — Private endpoints, VNet integration, managed identity, data residency
+- Cost management — Token-based pricing, provisioned throughput units (PTUs), Azure Cost Management
+- Error handling — Handling `401`, `429` (with `Retry-After`), `404` (deployment not found), content filter blocks
+- Best practices — Deployment naming conventions, region selection, failover strategies
+- **Lab**: Set up Azure OpenAI, deploy GPT-4o, and build a chat app with content filtering
+
+#### B3.9 Quick Comparison & Cheat Sheet
+- Side-by-side comparison table — Pricing per million tokens (input/output) across all providers
+- Context window comparison — 4K to 2M tokens, who supports what
+- Rate limits comparison — RPM and TPM across free and paid tiers
+- Feature matrix — Streaming, function calling, vision, embeddings, JSON mode support per provider
+- Latency benchmarks — Time-to-first-token and tokens-per-second across providers
+- Strengths & weaknesses — What each provider does best (reasoning, code, RAG, cost, privacy)
+- Common request/response patterns — Unified code snippets showing equivalent calls across all providers
+- Environment variable best practices — Storing API keys safely (`.env`, `python-dotenv`, secrets managers)
+- Security checklist — Never commit keys, `.gitignore` patterns, key rotation schedules
+- Choosing the right provider — Decision flowchart by use case (cost, speed, quality, privacy, compliance)
+- **Lab**: Build a unified Python script that calls all providers with the same prompt and compares responses side-by-side
 
 ### Module B4: Prompt Engineering Fundamentals
 - B4.1 What is prompt engineering and why it matters
