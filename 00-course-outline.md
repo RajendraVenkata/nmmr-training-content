@@ -99,7 +99,6 @@ Every module includes a **Docker-based hands-on lab** accessible via the browser
 - B2.3 JSON handling for LLM responses
 - B2.4 Async programming basics — `asyncio`, `aiohttp`
 - B2.5 Virtual environments and dependency management
-- B2.6 **Lab**: Python API exercises calling Ollama
 
 ### Module B3: LLM API Keys & Interaction Reference
 > *A hands-on reference guide — one lesson per provider. Come back anytime you need a refresher on setting up or calling a specific LLM API.*
@@ -239,7 +238,40 @@ Every module includes a **Docker-based hands-on lab** accessible via the browser
 - Best practices — Leveraging Cohere's RAG strengths, embedding model selection for use case
 - **Lab**: Generate your Cohere API key and build a grounded RAG chat with citations
 
-#### B3.7 Amazon Bedrock
+#### B3.7 Ollama — Run Any LLM Locally
+- What is Ollama — A local LLM runtime for running open-weight models on your own machine
+- Why use Ollama — No API keys, no cost, full privacy, offline-capable, great for development
+- Installing Ollama — Linux (`curl -fsSL https://ollama.com/install.sh | sh`), macOS (DMG), Windows (installer)
+- Verifying installation — `ollama --version`, checking the background service
+- Pulling your first model — `ollama pull llama3.1:8b`, understanding download sizes and storage
+- Ollama model library — Browsing available models at `ollama.com/library`
+- Popular models available — Llama 3.1/3.2, Mistral, Gemma 2, Phi-3, Qwen 2.5, DeepSeek, CodeLlama, Nomic Embed
+- Understanding model sizes — 1B, 3B, 7B, 8B, 13B, 34B, 70B — VRAM/RAM requirements for each
+- Quantization explained — Q2, Q4_0, Q4_K_M, Q5, Q8, FP16 — quality vs memory trade-offs
+- Hardware guide — CPU-only (which models work), 8GB VRAM, 16GB VRAM, 24GB+ VRAM recommendations
+- GPU vs CPU inference — Performance expectations, partial GPU offloading, `OLLAMA_NUM_GPU` setting
+- Ollama CLI deep dive — `run`, `pull`, `list`, `ps`, `rm`, `show` (model metadata), `cp` (clone models)
+- Chatting via CLI — `ollama run llama3.1:8b`, setting system prompts with `/set system`, multiline input
+- Ollama REST API overview — `http://localhost:11434` — all endpoints
+- Generate endpoint — `POST /api/generate` — single-turn text generation, request/response format
+- Chat endpoint — `POST /api/chat` — multi-turn conversation format with message history
+- Embeddings endpoint — `POST /api/embed` — generating vector embeddings locally
+- OpenAI-compatible endpoint — `POST /v1/chat/completions` — drop-in replacement for OpenAI SDK
+- Calling Ollama with Python — Using `requests` library directly
+- Using OpenAI SDK with Ollama — `OpenAI(base_url="http://localhost:11434/v1")` for seamless switching
+- Streaming responses — Handling NDJSON stream from Ollama, real-time token output
+- Model customization — Creating `Modelfile` with custom system prompts, parameters, and templates
+- Custom model parameters — `temperature`, `top_p`, `top_k`, `num_ctx` (context window), `repeat_penalty`
+- Running multiple models — Switching between models, concurrent model loading, memory management
+- Model management — Disk usage, cleaning up unused models, model storage location
+- Ollama configuration — Environment variables (`OLLAMA_HOST`, `OLLAMA_MODELS`, `OLLAMA_NUM_PARALLEL`, `OLLAMA_MAX_LOADED_MODELS`)
+- Network access — Binding to `0.0.0.0` for LAN access, reverse proxy setup
+- Docker deployment — Running Ollama in Docker with GPU passthrough (`ollama/ollama` image)
+- Troubleshooting — Common issues (port conflicts, OOM errors, slow inference), diagnostic commands
+- Best practices — Model preloading, keep-alive tuning, context size optimization, choosing the right quantization
+- **Lab**: Install Ollama, pull 3 different models (Llama, Mistral, Gemma), chat via CLI, call via REST API and Python, create a custom Modelfile
+
+#### B3.8 Amazon Bedrock
 - What is Amazon Bedrock — Managed access to multiple LLMs through a single API
 - AWS account setup — Creating an account, IAM user setup, access keys
 - Enabling models — Requesting model access in the Bedrock console (Claude, Llama, Mistral, Titan)
@@ -260,7 +292,7 @@ Every module includes a **Docker-based hands-on lab** accessible via the browser
 - Best practices — Region selection for latency, cross-region inference, IAM least-privilege
 - **Lab**: Set up AWS Bedrock, enable Claude, and build a multi-model chat using the Converse API
 
-#### B3.8 Azure OpenAI Service
+#### B3.9 Azure OpenAI Service
 - What is Azure OpenAI — Microsoft-hosted OpenAI models with enterprise features
 - Azure account setup — Creating an Azure account, subscription, resource group
 - Requesting access — Applying for Azure OpenAI access, approval process
@@ -283,7 +315,7 @@ Every module includes a **Docker-based hands-on lab** accessible via the browser
 - Best practices — Deployment naming conventions, region selection, failover strategies
 - **Lab**: Set up Azure OpenAI, deploy GPT-4o, and build a chat app with content filtering
 
-#### B3.9 Quick Comparison & Cheat Sheet
+#### B3.10 Quick Comparison & Cheat Sheet
 - Side-by-side comparison table — Pricing per million tokens (input/output) across all providers
 - Context window comparison — 4K to 2M tokens, who supports what
 - Rate limits comparison — RPM and TPM across free and paid tiers
