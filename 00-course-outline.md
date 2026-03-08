@@ -168,28 +168,32 @@ Every module includes a **Docker-based hands-on lab** accessible via the browser
 - Best practices — Managing long contexts (1M+ tokens), multimodal prompt design
 - **Lab**: Generate your Google AI API key and build a multimodal chat with image understanding
 
-#### B3.4 Meta Llama (via Ollama)
-- Why Llama is different — Open-weight models, no API key needed, run locally for free
-- Llama licensing — Meta's community license, commercial use terms
-- Installing Ollama — Linux/Mac/Windows installation walkthrough
-- Pulling your first model — `ollama pull llama3.1:8b`, understanding download size
-- Understanding model sizes — 1B, 3B, 8B, 70B, 405B — VRAM requirements and trade-offs
-- Quantization explained — Q4, Q5, Q8, FP16 — quality vs memory trade-offs
-- Ollama CLI commands — `run`, `pull`, `list`, `ps`, `rm`, `show`, `cp`
-- Chatting via CLI — `ollama run llama3.1:8b`, system prompts with `>>> /set system`
-- Ollama REST API — `http://localhost:11434` endpoints overview
-- Generate endpoint — `POST /api/generate` — request/response format
-- Chat endpoint — `POST /api/chat` — multi-turn conversation format
-- OpenAI-compatible endpoint — `POST /v1/chat/completions` — drop-in replacement
-- Calling Llama with Python — Using `requests` library and the `openai` SDK with `base_url`
-- Streaming responses — Handling NDJSON stream from Ollama
-- Model customization — Creating Modelfiles with custom system prompts and parameters
-- Running multiple models — Switching between Llama, Mistral, Phi, Gemma on Ollama
-- Models overview — Llama 3.1 (8B, 70B, 405B), Llama 3.2 (1B, 3B lightweight), Llama 3.2 Vision (11B, 90B)
-- Model selection guide — Choosing by hardware: CPU-only (1B/3B), 8GB VRAM (8B-Q4), 24GB+ VRAM (70B-Q4)
-- GPU vs CPU inference — Performance expectations, memory offloading
-- Best practices — Model preloading, context size tuning (`num_ctx`), keep-alive settings
-- **Lab**: Install Ollama, pull multiple models, chat via CLI, API, and Python script
+#### B3.4 Meta Llama
+- What is Llama — Meta's open-weight large language model family
+- Why Llama matters — Open-weight, free for commercial use, state-of-the-art performance
+- Llama licensing — Meta's community license, acceptable use policy, commercial use terms
+- Accessing Llama — Signing up at `llama.meta.com`, requesting model access, approval process
+- Downloading model weights — Direct download from Meta, Hugging Face Hub (`meta-llama` org)
+- Hugging Face integration — `huggingface-cli login`, `from_pretrained()`, gated model access
+- Meta Llama API — Meta's hosted inference endpoint, API key generation, request/response format
+- Calling Meta Llama API with Python — Using `requests` and the `llama-stack-client` SDK
+- Models overview — Llama 3.1 (8B, 70B, 405B), Llama 3.2 (1B, 3B lightweight), Llama 3.2 Vision (11B, 90B), Llama 3.3 (70B)
+- Model architecture — Decoder-only transformer, grouped-query attention, RoPE embeddings
+- Understanding model sizes — Parameter counts, memory requirements (FP16, INT8, INT4)
+- Quantization options — GPTQ, AWQ, GGUF — formats for efficient inference
+- Running Llama locally — Options overview: Ollama, llama.cpp, vLLM, Hugging Face Transformers
+- Running with Hugging Face Transformers — `AutoModelForCausalLM`, `pipeline()`, basic inference
+- Running with llama.cpp — GGUF format, `llama-cli`, Python bindings (`llama-cpp-python`)
+- Llama on cloud providers — Available on AWS Bedrock, Azure AI, Google Cloud, Groq, Together AI
+- Tool calling with Llama — Built-in function calling support in Llama 3.1+
+- Vision capabilities — Llama 3.2 Vision models for image understanding
+- Lightweight models — Llama 3.2 1B/3B for mobile and edge deployment
+- Fine-tuning overview — LoRA, QLoRA, full fine-tuning with Hugging Face PEFT
+- Model selection guide — Choosing by use case: lightweight (1B/3B), general (8B), advanced (70B), frontier (405B)
+- Community ecosystem — Hugging Face model hub, GGUF community quantizations, fine-tuned variants
+- Error handling — Common issues with model loading, memory errors, tokenizer mismatches
+- Best practices — Choosing the right format (GGUF vs HF vs AWQ), memory estimation, batch inference
+- **Lab**: Download Llama 3.1 8B from Hugging Face, run inference with Transformers, and call Meta's Llama API
 
 #### B3.5 Mistral AI
 - Creating a Mistral account — Sign-up on La Plateforme, email verification
