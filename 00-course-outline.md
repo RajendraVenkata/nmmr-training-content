@@ -93,14 +93,6 @@ Every module includes a **Docker-based hands-on lab** accessible via the browser
 - B1.6 Closed-source vs Open-source models
 - B1.7 **Lab**: Chat with different LLMs via web UI and observe differences
 
-### Module B2: Setting Up Your Local AI Environment
-- B2.1 Introduction to Ollama — Run LLMs on your machine
-- B2.2 Installing Ollama (Linux/Mac/Windows)
-- B2.3 Pulling and running your first model (`llama3.1:8b`)
-- B2.4 Understanding model sizes, quantization, and VRAM requirements
-- B2.5 Ollama CLI commands — `run`, `pull`, `list`, `ps`, `rm`
-- B2.6 Ollama REST API — `http://localhost:11434`
-- B2.7 **Lab**: Install Ollama, pull models, chat via CLI and API
 
 ### Module B3: Python for AI — Quick Refresher
 - B3.1 Python basics recap — variables, functions, classes
