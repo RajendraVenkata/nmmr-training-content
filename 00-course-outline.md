@@ -101,71 +101,129 @@ Every module includes a **Docker-based hands-on lab** accessible via the browser
 - B2.5 Virtual environments and dependency management
 - B2.6 **Lab**: Python API exercises calling Ollama
 
-### Module B3: Prompt Engineering Fundamentals
-- B3.1 What is prompt engineering and why it matters
-- B3.2 System prompts vs User prompts vs Assistant messages
-- B3.3 Zero-shot, few-shot, and chain-of-thought prompting
-- B3.4 Structured output — Getting JSON responses from LLMs
-- B3.5 Prompt templates and variables
-- B3.6 Common pitfalls and how to avoid them
-- B3.7 **Lab**: Prompt engineering exercises with Ollama
+### Module B3: LLM API Keys & Interaction Reference
+> *A hands-on reference guide — one lesson per provider. Come back anytime you need a refresher on setting up or calling a specific LLM API.*
 
-### Module B4: Introduction to AI Agents
-- B4.1 What is an AI agent — Beyond chatbots
-- B4.2 Agent = LLM + Tools + Memory + Planning
-- B4.3 The ReAct pattern — Reason → Act → Observe → Repeat
-- B4.4 Types of agents — Conversational, task-oriented, autonomous
-- B4.5 Agent vs Chain vs Simple LLM call — When to use what
-- B4.6 Real-world agent examples and use cases
-- B4.7 **Lab**: Trace through an agent's reasoning loop manually
+#### B3.1 Anthropic Claude
+- Creating an Anthropic account and generating API keys
+- API key management — Workspaces, key rotation, usage limits
+- The Messages API — Endpoint, headers, request/response format
+- Calling Claude with Python (`anthropic` SDK)
+- Models overview — Claude Opus, Sonnet, Haiku — when to use which
+- **Lab**: Generate your Anthropic API key and make your first Claude API call
 
-### Module B5: Tool Calling — Giving Agents Abilities
-- B5.1 What is tool/function calling
-- B5.2 How tool calling works — The LLM decides, your code executes
-- B5.3 Defining tools with JSON schemas
-- B5.4 Tool calling with Ollama (Llama 3.1 native support)
-- B5.5 Building your first tool — A calculator agent
-- B5.6 Multiple tools — Search + calculator + file reader
-- B5.7 Handling tool errors gracefully
-- B5.8 **Lab**: Build a multi-tool agent from scratch with Ollama
+#### B3.2 OpenAI (GPT)
+- Creating an OpenAI account and generating API keys
+- API key management — Organization settings, billing, rate limits
+- The Chat Completions API — Endpoint, headers, request/response format
+- Calling GPT with Python (`openai` SDK)
+- Models overview — GPT-4o, GPT-4o-mini, o1, o3 — when to use which
+- **Lab**: Generate your OpenAI API key and make your first GPT API call
 
-### Module B6: Building Your First Agent with LangChain
-- B6.1 What is LangChain — The orchestration layer
-- B6.2 LangChain core concepts — Models, prompts, chains, tools, agents
-- B6.3 Setting up LangChain with Ollama
-- B6.4 Creating tools with `@tool` decorator
-- B6.5 Building a ReAct agent with `create_tool_calling_agent`
-- B6.6 AgentExecutor — Running agents with verbose tracing
-- B6.7 Adding conversation memory to agents
-- B6.8 **Lab**: Build a research assistant agent using LangChain + Ollama
+#### B3.3 Google Gemini
+- Creating a Google AI Studio account and generating API keys
+- API key management — Google Cloud projects, quotas, billing
+- The Generative Language API — Endpoint, headers, request/response format
+- Calling Gemini with Python (`google-generativeai` SDK)
+- Models overview — Gemini 2.0 Flash, Gemini 2.0 Pro — when to use which
+- **Lab**: Generate your Google AI API key and make your first Gemini API call
 
-### Module B7: Introduction to RAG (Retrieval Augmented Generation)
-- B7.1 The problem — LLMs don't know your private data
-- B7.2 What is RAG — Retrieve → Augment → Generate
-- B7.3 Text splitting and chunking strategies
-- B7.4 Embeddings — Converting text to vectors
-- B7.5 Vector databases — ChromaDB (local, free)
-- B7.6 Building a simple RAG pipeline
-- B7.7 RAG with LangChain — Document loaders, retrievers, chains
-- B7.8 **Lab**: Build a "Chat with your PDF" application
+#### B3.4 Meta Llama (via Ollama)
+- Why Llama is different — Open-weight models, no API key needed
+- Running Llama locally with Ollama — `ollama pull llama3.1:8b`
+- Ollama REST API — The OpenAI-compatible local endpoint
+- Calling Llama with Python via Ollama's API
+- Models overview — Llama 3.1 (8B, 70B, 405B), Llama 3.2 — size vs capability
+- **Lab**: Pull and interact with Llama models locally via Ollama
 
-### Module B8: Provider Abstraction — Write Once, Run Anywhere
-- B8.1 Why provider abstraction matters
-- B8.2 Using the OpenAI SDK with Ollama (compatible API)
-- B8.3 Swapping Ollama → OpenAI → Anthropic Claude with one-line changes
-- B8.4 LangChain's provider abstraction layer
-- B8.5 Environment-based configuration (dev=Ollama, prod=Claude)
-- B8.6 Cost tracking and token usage monitoring
-- B8.7 **Lab**: Build an agent that runs on Ollama locally, then swap to Claude API
+#### B3.5 Mistral AI
+- Creating a Mistral account and generating API keys
+- API key management — La Plateforme dashboard, billing, rate limits
+- The Chat Completions API — Endpoint, headers, request/response format
+- Calling Mistral with Python (`mistralai` SDK)
+- Models overview — Mistral Large, Mistral Small, Codestral — when to use which
+- **Lab**: Generate your Mistral API key and make your first Mistral API call
 
-### Module B9: Beginner Capstone Project
-- B9.1 Project: **AI-Powered FAQ Assistant**
+#### B3.6 Cohere
+- Creating a Cohere account and generating API keys
+- API key management — Dashboard, trial vs production keys
+- The Chat API — Endpoint, headers, request/response format
+- Calling Cohere with Python (`cohere` SDK)
+- Models overview — Command R+, Command R, Embed — when to use which
+- **Lab**: Generate your Cohere API key and make your first Cohere API call
+
+#### B3.7 Quick Comparison & Cheat Sheet
+- Side-by-side comparison — Pricing, rate limits, context windows, strengths
+- Common request/response patterns across all providers
+- Environment variable best practices — Storing API keys safely (`.env`, secrets managers)
+- Choosing the right provider for your use case (cost, speed, quality, privacy)
+- **Lab**: Build a unified Python script that calls all providers with the same prompt and compares responses
+
+### Module B4: Prompt Engineering Fundamentals
+- B4.1 What is prompt engineering and why it matters
+- B4.2 System prompts vs User prompts vs Assistant messages
+- B4.3 Zero-shot, few-shot, and chain-of-thought prompting
+- B4.4 Structured output — Getting JSON responses from LLMs
+- B4.5 Prompt templates and variables
+- B4.6 Common pitfalls and how to avoid them
+- B4.7 **Lab**: Prompt engineering exercises with Ollama
+
+### Module B5: Introduction to AI Agents
+- B5.1 What is an AI agent — Beyond chatbots
+- B5.2 Agent = LLM + Tools + Memory + Planning
+- B5.3 The ReAct pattern — Reason → Act → Observe → Repeat
+- B5.4 Types of agents — Conversational, task-oriented, autonomous
+- B5.5 Agent vs Chain vs Simple LLM call — When to use what
+- B5.6 Real-world agent examples and use cases
+- B5.7 **Lab**: Trace through an agent's reasoning loop manually
+
+### Module B6: Tool Calling — Giving Agents Abilities
+- B6.1 What is tool/function calling
+- B6.2 How tool calling works — The LLM decides, your code executes
+- B6.3 Defining tools with JSON schemas
+- B6.4 Tool calling with Ollama (Llama 3.1 native support)
+- B6.5 Building your first tool — A calculator agent
+- B6.6 Multiple tools — Search + calculator + file reader
+- B6.7 Handling tool errors gracefully
+- B6.8 **Lab**: Build a multi-tool agent from scratch with Ollama
+
+### Module B7: Building Your First Agent with LangChain
+- B7.1 What is LangChain — The orchestration layer
+- B7.2 LangChain core concepts — Models, prompts, chains, tools, agents
+- B7.3 Setting up LangChain with Ollama
+- B7.4 Creating tools with `@tool` decorator
+- B7.5 Building a ReAct agent with `create_tool_calling_agent`
+- B7.6 AgentExecutor — Running agents with verbose tracing
+- B7.7 Adding conversation memory to agents
+- B7.8 **Lab**: Build a research assistant agent using LangChain + Ollama
+
+### Module B8: Introduction to RAG (Retrieval Augmented Generation)
+- B8.1 The problem — LLMs don't know your private data
+- B8.2 What is RAG — Retrieve → Augment → Generate
+- B8.3 Text splitting and chunking strategies
+- B8.4 Embeddings — Converting text to vectors
+- B8.5 Vector databases — ChromaDB (local, free)
+- B8.6 Building a simple RAG pipeline
+- B8.7 RAG with LangChain — Document loaders, retrievers, chains
+- B8.8 **Lab**: Build a "Chat with your PDF" application
+
+### Module B9: Provider Abstraction — Write Once, Run Anywhere
+- B9.1 Why provider abstraction matters
+- B9.2 Using the OpenAI SDK with Ollama (compatible API)
+- B9.3 Swapping Ollama → OpenAI → Anthropic Claude with one-line changes
+- B9.4 LangChain's provider abstraction layer
+- B9.5 Environment-based configuration (dev=Ollama, prod=Claude)
+- B9.6 Cost tracking and token usage monitoring
+- B9.7 **Lab**: Build an agent that runs on Ollama locally, then swap to Claude API
+
+### Module B10: Beginner Capstone Project
+- B10.1 Project: **AI-Powered FAQ Assistant**
   - Loads company documents (PDF/text)
   - Uses RAG to answer questions accurately
   - Has tool calling for live data (weather, calculator, date/time)
   - Runs on Ollama locally
   - One-line swap to Claude/OpenAI for deployment
-- B9.2 **Lab**: Full capstone project build in Docker environment
+- B10.2 **Lab**: Full capstone project build in Docker environment
 
 ---
 
